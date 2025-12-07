@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Hangman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+
+        <div id="game-info">
+            <div id="score-display" class="info-box">✝️: 100</div>
+
+            <div id="hangman-drawing" class="info-box">
+                <img id="hangman-image" src="images/hangman-0.png" alt="Hangman Gallow" width="220" height="290">
+            </div>
+
+            <div id="guesses-left-display" class="info-box">Guesses: 6</div>
+        </div>
+
+        <div id="word-display" class="word-area">
+        </div>
+
+        <div id="controls-area">
+            <div id="letter-buttons" class="buttons-grid">
+            </div>
+
+            <div id="hint-section">
+                <button id="hint-button" class="action-button">Hint (-10 📖)</button>
+                <p id="hint-display" class="hint-text"></p>
+            </div>
+        </div>
+
+        <div id="game-message" class="message-area"></div>
+
+    </div>
+
+    <script src="hangman-script.js"></script>
+    <footer>202512</footer>
+</body>
+
+</html>
