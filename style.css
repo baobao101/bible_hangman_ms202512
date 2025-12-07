@@ -7,11 +7,12 @@ body {
     margin: 0;
     background-color: #fff;
 }
-
 footer {
     font-size: xx-small;
+    text-align: center;
+    /* Ensure it doesn't grow and stays fixed height */
+    flex-shrink: 0; 
 }
-
 .container {
     background: #fff;
     padding: 30px;
