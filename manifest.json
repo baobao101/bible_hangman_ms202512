@@ -1,8 +1,8 @@
 {
-  "name": "Bible Hangman (Free)",
-  "short_name": "SimpleApp",
-  "description": "A basic, offline-ready web application demonstrating PWA capabilities.",
-  "start_url": "/index.html",
+  "name": "Bible Hangman Free",
+  "short_name": "Bible Hangman",
+  "description": "A classic, untimed, and fun word game for Bible enthusiasts. No ad to distract you!",
+  "start_url": "https://baobao101.github.io/bh_ms202512/index.html",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -33,5 +33,5 @@
       "purpose": "maskable"
     }
   ],
-  "orientation": "portrait"
+  "orientation": "auto"
 }
