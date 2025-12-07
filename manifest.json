@@ -1,5 +1,5 @@
 {
-  "name": "My Simple App Name",
+  "name": "Bible Hangman (Free)",
   "short_name": "SimpleApp",
   "description": "A basic, offline-ready web application demonstrating PWA capabilities.",
   "start_url": "/index.html",
