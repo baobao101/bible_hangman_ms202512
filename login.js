@@ -65,3 +65,22 @@ async function getTopScores() {
     console.table(data); // This is your shared leaderboard data
   }
 }
+async function uploadScore(playerScore) {
+  // Get the logged in user
+  const { data: { user } } = await _supabase.auth.getUser();
+
+  if (user) {
+    const { error } = await _supabase
+      .from('leaderboard')
+      .insert([
+        { 
+          username: user.user_metadata.full_name, 
+          score: playerScore,
+          user_id: user.id 
+        }
+      ]);
+
+    if (error) console.error("Error saving score:", error);
+    else console.log("Score saved!");
+  }
+}
