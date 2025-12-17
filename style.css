@@ -106,3 +106,23 @@ h1 {
     display: block;
     margin: 15px auto;
 }
+#leaderboard-container {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#score-list {
+  list-style: none;
+  padding: 0;
+}
+
+#score-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+}
