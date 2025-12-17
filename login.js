@@ -54,6 +54,41 @@ async function saveScore(finalScore) {
   if (error) console.error('Error saving score:', error);
   else alert("Score saved to leaderboard!");
 }
+async function fetchLeaderboard() {
+  const scoreList = document.getElementById('score-list');
+
+  // 1. Fetch data from Supabase
+  const { data, error } = await _supabase
+    .from('leaderboard')
+    .select('username, score')
+    .order('score', { ascending: false }) // Highest score first
+    .limit(10); // Only get the top 10
+
+  if (error) {
+    console.error('Error fetching leaderboard:', error);
+    scoreList.innerHTML = '<li>Error loading scores.</li>';
+    return;
+  }
+
+  // 2. Clear current list
+  scoreList.innerHTML = '';
+
+  // 3. Loop through data and create list items
+  if (data.length === 0) {
+    scoreList.innerHTML = '<li>No scores yet. Be the first!</li>';
+  } else {
+    data.forEach((entry, index) => {
+      const li = document.createElement('li');
+      // Add a little trophy for the winner!
+      const rank = index === 0 ? '🏆' : `#${index + 1}`;
+      li.innerHTML = `<strong>${rank} ${entry.username}:</strong> ${entry.score}`;
+      scoreList.appendChild(li);
+    });
+  }
+}
+
+// Call this function when the page loads
+fetchLeaderboard();
 async function getTopScores() {
   const { data, error } = await _supabase
     .from('leaderboard')
