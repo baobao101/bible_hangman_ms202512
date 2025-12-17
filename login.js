@@ -174,3 +174,22 @@ async function handleGameOver(currentSessionScore) {
   fetchPersonalBest();
   fetchLeaderboard();
 }
+// This function starts the live listener
+function startLiveLeaderboard() {
+  _supabase
+    .channel('public:leaderboard') // Create a channel
+    .on(
+      'postgres_changes', 
+      { event: 'INSERT', schema: 'public', table: 'leaderboard' }, 
+      (payload) => {
+        console.log('New score received!', payload.new);
+        
+        // Refresh the list automatically when a new score is saved
+        fetchLeaderboard();
+      }
+    )
+    .subscribe();
+}
+
+// Start listening when the game loads
+startLiveLeaderboard();
