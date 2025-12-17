@@ -79,9 +79,11 @@ async function fetchLeaderboard() {
   } else {
     data.forEach((entry, index) => {
       const li = document.createElement('li');
+      li.classList.add('new-entry-animation');
       // Add a little trophy for the winner!
-      const rank = index === 0 ? '🏆' : `#${index + 1}`;
-      li.innerHTML = `<strong>${rank} ${entry.username}:</strong> ${entry.score}`;
+      li.innerHTML = `<strong>#${index + 1} ${entry.username}:</strong> ${entry.score}`;
+    //  const rank = index === 0 ? '🏆' : `#${index + 1}`;
+  //    li.innerHTML = `<strong>${rank} ${entry.username}:</strong> ${entry.score}`;
       scoreList.appendChild(li);
     });
   }
