@@ -54,3 +54,14 @@ async function saveScore(finalScore) {
   if (error) console.error('Error saving score:', error);
   else alert("Score saved to leaderboard!");
 }
+async function getTopScores() {
+  const { data, error } = await _supabase
+    .from('leaderboard')
+    .select('username, score')
+    .order('score', { ascending: false })
+    .limit(10);
+
+  if (data) {
+    console.table(data); // This is your shared leaderboard data
+  }
+}
