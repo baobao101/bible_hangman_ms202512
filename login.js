@@ -32,3 +32,25 @@ async function checkUser() {
 }
 
 checkUser();
+
+async function saveScore(finalScore) {
+  const { data: { user } } = await _supabase.auth.getUser();
+
+  if (!user) {
+    alert("Log in to save your score!");
+    return;
+  }
+
+  const { error } = await _supabase
+    .from('leaderboard')
+    .insert([
+      { 
+        user_id: user.id, 
+        username: user.user_metadata.full_name, 
+        score: finalScore 
+      }
+    ]);
+
+  if (error) console.error('Error saving score:', error);
+  else alert("Score saved to leaderboard!");
+}
