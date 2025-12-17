@@ -150,3 +150,27 @@ async function fetchPersonalBest() {
     pbElement.innerText = "No scores yet!";
   }
 }
+async function handleGameOver(currentSessionScore) {
+  const { data: { user } } = await _supabase.auth.getUser();
+  if (!user) return;
+
+  // Save the new score first
+  await uploadScore(currentSessionScore);
+
+  // Check if this is a new PB
+  const { data } = await _supabase
+    .from('leaderboard')
+    .select('score')
+    .eq('user_id', user.id)
+    .order('score', { ascending: false })
+    .limit(1);
+
+  // If this session is higher than the previous top score (or if it's the first)
+  if (!data[0] || currentSessionScore >= data[0].score) {
+    alert("🔥 NEW PERSONAL BEST!");
+  }
+
+  // Refresh the whole leaderboard UI
+  fetchPersonalBest();
+  fetchLeaderboard();
+}
