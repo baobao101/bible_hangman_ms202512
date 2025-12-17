@@ -119,3 +119,34 @@ async function uploadScore(playerScore) {
     else console.log("Score saved!");
   }
 }
+async function fetchPersonalBest() {
+  const pbElement = document.getElementById('pb-score');
+  
+  // 1. Get the current user
+  const { data: { user } } = await _supabase.auth.getUser();
+
+  if (!user) {
+    pbElement.innerText = "Log in to see PB";
+    return;
+  }
+
+  // 2. Query only this user's scores
+  const { data, error } = await _supabase
+    .from('leaderboard')
+    .select('score')
+    .eq('user_id', user.id) // Filter by the user's unique ID
+    .order('score', { ascending: false })
+    .limit(1); // We only need their highest single score
+
+  if (error) {
+    console.error("Error fetching PB:", error);
+    return;
+  }
+
+  // 3. Update the UI
+  if (data && data.length > 0) {
+    pbElement.innerText = `${data[0].score} pts`;
+  } else {
+    pbElement.innerText = "No scores yet!";
+  }
+}
