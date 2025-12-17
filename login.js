@@ -192,3 +192,13 @@ function startLiveLeaderboard() {
 
 // Start listening when the game loads
 startLiveLeaderboard();
+async function saveHighScore(currentScore) {
+  const { data: { user } } = await _supabase.auth.getUser();
+  
+  const { error } = await _supabase.rpc('update_high_score', { 
+    new_score: currentScore,
+    p_username: user.user_metadata.full_name
+  });
+
+  if (error) console.error(error);
+}
