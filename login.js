@@ -36,23 +36,20 @@ checkUser();
 async function saveScore(finalScore) {
   const { data: { user } } = await _supabase.auth.getUser();
 
-  if (!user) {
-    alert("Log in to save your score!");
-    return;
-  }
+  if (!user) return;
 
+  // .upsert will look for a row where 'user_id' matches
   const { error } = await _supabase
     .from('leaderboard')
-    .insert([
-      { 
+    .upsert({ 
         user_id: user.id, 
         username: user.user_metadata.full_name, 
         score: finalScore 
-      }
-    ]);
+      }, 
+      { onConflict: 'user_id' } // Tell it to watch for duplicate user_ids
+    );
 
   if (error) console.error('Error saving score:', error);
-  else alert("Score saved to leaderboard!");
 }
 async function fetchLeaderboard() {
   const scoreList = document.getElementById('score-list');
