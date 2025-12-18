@@ -66,7 +66,7 @@ function saveWordToHistory(word) {
  */
 async function loadWordList() {
     try {
-        const response = await fetch('https://baobao101.github.io/bh_ms202512_pro/bible_words.json');
+        const response = await fetch('https://baobao101.github.io/bh_ms202512/bible_words.json');
         if (!response.ok) {
             // If the file is missing or not reachable
             throw new Error(`Failed to load bible_words.json: ${response.status}`);
