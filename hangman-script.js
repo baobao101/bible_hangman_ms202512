@@ -211,7 +211,7 @@ async function handleHintRequest() {
     if (!selectedWord) return;
 
     if (currentScore < HINT_COST) {
-        hintDisplay.textContent = Not enough points (${HINT_COST} required) for a hint... Go PRO with 900 bonus points and 7,000 more words!`;
+        hintDisplay.textContent =`Not enough points (${HINT_COST} required) for a hint... Go PRO with 900 bonus points and 7,000 more words!`;
         return;
     }
 
