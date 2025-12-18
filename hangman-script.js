@@ -1,6 +1,6 @@
 // --- CONFIGURATION & DOM ELEMENTS ---
 const HINT_COST = 10;
-const INITIAL_SCORE = 1000;
+const INITIAL_SCORE = 100;
 const MAX_GUESSES = 6;
 const DATAMUSE_API_BASE = 'https://api.datamuse.com/words';
 const MAX_HINTS_TO_SHOW = 4;
