@@ -203,7 +203,7 @@ async function fetchHint(word) {
 
     } catch (error) {
         console.error("Could not fetch Datamuse hint:", error);
-        return "Hint service unavailable. Try guessing!";
+        return "Hint server unavailable. Try guessing!";
     }
 }
 
